@@ -1,0 +1,751 @@
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Pixelify+Sans&family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Shadows+Into+Light&display=swap'); 
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    border-style: none;
+    outline: none;
+    font-family: "Indie Flower", sans-serif;
+}
+
+:root {
+    --bg-color: #081b29;
+    --main-color: #00abf0;
+    --text-color: #333;
+    --sec-txt-color: #555;
+    --white-color: #fff;
+    --cover-color: linear-gradient(45deg, #1f3954, #0e1d2c);
+    --pages-color: linear-gradient(90deg, #e3e3e3, #cfd2c8);
+    --border: .2rem solid #00abf0;
+    --box-shadow: 0 0 .6rem rgba(0, 0, 0, .2);
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0; /* Reset default margin */
+    background: url('img/background.png') center/cover no-repeat; /* Shorter syntax for background */
+    color: var(--text-color); /* Assuming --text-color is defined elsewhere */
+    overflow: hidden;
+    position: relative;
+}
+
+/* Add a pseudo-element for overlay effects (e.g., semi-transparent overlay) */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+    pointer-events: none; /* Allow interaction with underlying content */
+    z-index: -1; /* Place the overlay behind other content */
+}
+
+/* Optionally, add a smooth transition for the overlay effect */
+body::before {
+    transition: background 0.5s ease;
+}
+
+/* Apply a hover effect on the body or a specific element */
+body:hover::before {
+    background: rgba(0, 0, 0, 0.3); /* Adjust the opacity or color for the hover effect */
+}
+
+.tape {
+    position: fixed;
+    top: 15px; /* Adjust the top position based on your preference */
+    right: 15px; /* Adjust the right position based on your preference */
+    display: inline-block;
+    color: #fff;
+    font-size: 1rem;
+    text-align: center;
+    z-index: 1000;
+}
+
+.tape i {
+    color: orangered;
+    font-size: 3rem;
+    display: block; /* Change from inline-block to block */
+    margin: 0 auto; /* Center the icon horizontally */
+}
+
+.tape p {
+    margin-top: 5px; /* Adjust the margin based on your preference */
+    font-size: 2rem;
+}
+
+.logo-container {
+    position: absolute;
+    top: 25px; /* Adjust this value to move the logo down or up */
+    left: 5%; /* Adjust this value to move the logo right or left */
+}
+
+.logo a {
+    text-decoration: none;
+    font-size: 32px;
+    font-weight: 600;
+    color: #fff;
+}
+
+.logo a span {
+    color: red; /* Set the initial color */
+    animation: glow 5s infinite alternate cubic-bezier(0.4, 0.01, 0.165, 0.99); /* Adjust the cubic-bezier values for smoother transition */
+}
+
+@keyframes glow {
+    0% {
+        color: red; /* Red color at the start */
+    }
+    25% {
+        color: orangered; /* Transition from red to orangered */
+    }
+    50% {
+        color: orange; /* Transition from orangered to orange */
+    }
+    75% {
+        color: orangered; /* Transition from orange back to orangered */
+    }
+    100% {
+        color: red; /* Return to red at the end */
+    }
+}
+
+.wrapper {
+    position: relative;
+    width: 66rem;
+    height: 45rem;
+    padding: 2rem;
+    animation: show-animate 2.5s ease forwards;
+    perspective: 250rem;
+}
+
+@keyframes show-animate {
+    0%,
+    35% {
+        opacity: 0;
+        transform: rotate(-25deg);
+    }
+    100% {
+        opacity: 1;
+        transform: rotate(0deg);
+    }
+}
+
+.cover {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    background: var(--cover-color);
+    box-shadow: var(--box-shadow);
+    border-top-left-radius: .6rem;
+    border-bottom-left-radius: .6rem;
+    transform-origin: right;
+    top: 0;
+    left: 0;
+    box-shadow: 10px 75px 20px rgba(7, 2, 29, 0.3);
+}
+
+.cover.cover-left {
+    z-index: -1;
+}
+
+.cover.cover-right {
+    z-index: 100;
+    transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.cover.cover-right.turn {
+    transform: rotateY(180deg);
+}
+
+.book {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    perspective: 250rem;
+}
+
+.book .book-page {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    background: var(--pages-color);
+    object-fit: cover;
+    box-shadow: 0 0 .6rem rgba(0, 0, 0, -1);
+    display: flex;
+    padding: 2rem;
+}
+
+/* profile */
+.profile-page{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-page img {
+    max-width: 180px;
+    border-radius: 50%;
+    border: .25rem solid var(--main-color);
+    margin-bottom: .8rem;
+    transition: .5s ease;
+}
+
+.profile-page img:hover {
+    transform: scale(2.2);
+}
+
+.profile-page h1{
+    font-size: 2rem;
+    line-height: 1;
+}
+
+.profile-page h3{
+    font-size: 1.5rem;
+    color: var(--main-color);
+}
+
+.profile-page .social-media {
+    margin: .6rem 0 .8rem;
+}
+
+.profile-page .social-media a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 2rem;
+    height: 2rem;
+    background: transparent;
+    border: var(--border);
+    border-radius: 50%;
+    font-size: 1.3rem;
+    color: var(--main-color);
+    margin: 0 .2rem;
+    transition: .5s;
+}
+
+.profile-page .social-media a:hover {
+    background: var(--main-color);
+    color: var(--white-color);
+}
+
+.profile-page p {
+    text-align: justify;
+    font-weight: 800;
+}
+
+.profile-page .btn-box {
+    margin-top: 1.2rem;
+}
+
+.btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 8rem;
+    height: 2.5rem;
+    background: pink;
+    box-shadow: 2px 10px 10px rgba(24, 1, 20, 0.3);
+    font-size: 1rem;
+    font-weight: 500;
+    margin: 0 1rem;
+    transition: .5s ease;
+    cursor: pointer;
+}
+
+.btn:hover {
+    box-shadow: var(--box-shadow);
+}
+
+/* pages */
+.book-page.page-right{
+    position: absolute;
+    right: 0;
+    transform-style: preserve-3d;
+    transform-origin: left;
+    transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.book-page.page-right.turn {
+    transform: rotateY(-180deg);
+}
+
+
+.book-page .page-front,
+.book-page .page-back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--pages-color);
+    padding: 1.5rem 2rem;
+}
+
+.book-page .page-front {
+    transform: rotateX(0deg) translateZ(1px);
+}
+
+.book-page .page-back {
+    transform: rotateY(180deg) translateZ(1px);
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.workeduc-box .workeduc-content {
+    position: relative;
+    padding-left: 1.6rem;
+    margin-bottom: 1.2rem;
+}
+
+.workeduc-box .workeduc-content li {
+    font-weight: 900;
+}
+
+.workeduc-box .workeduc-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -0.65rem;
+    width: .5rem;
+    height: .5rem;
+    background: var(--main-color);
+    border-radius: 50%;
+}
+
+.workeduc-content .year {
+    color: var(--main-color);
+}
+
+.workeduc-content .year i {
+    margin-right: .4rem;
+}
+
+.number-page {
+    position: absolute;
+    bottom: 1.2rem;
+    left: 50%;
+    font-weight: bold;
+    font-size: 15px;
+    transform: translateX(-50%);
+}
+
+.nxtprev-btn {
+    position: absolute;
+    bottom: .9rem;
+    right: 1.5rem;
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: var(--sec-txt-color);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    transition: .5s;
+}
+
+.nxtprev-btn:hover {
+    color: var(--main-color);
+}
+
+.nxtprev-btn.back {
+    left: 1.5rem;
+}
+
+.service-box {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.service-box .service-content {
+    flex: 1 1 10rem;
+    padding: .8rem .5rem 1.1rem;
+    text-align: center;
+    background-color: rgb(255, 255, 98);
+    box-shadow: 2px 10px 10px rgba(24, 15, 1, 0.3);
+    transition: .3s ease;
+}
+
+.service-box .service-content:hover {
+    box-shadow: var(--box-shadow);
+}
+
+.service-content i {
+    font-size: 2.5rem;
+    color: var(--main-color);
+}
+
+.service-content h3 {
+    font-size: 1.1rem;
+}
+
+.service-content p {
+    margin: .2rem 0 .8rem;
+}
+
+.service-box .btn {
+    width: 8rem;
+    height: 2.5rem;
+}
+
+.service-content p i {
+    font-size: 1rem;
+    margin: .2rem;
+    color: orangered;
+}
+
+.skill-box {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.skill-box .skill-content {
+    flex: 1 1 20rem;
+}
+
+.skill-content h3 {
+    font-size: 1.3rem;
+    line-height: 1;
+    margin-bottom: .6rem;
+}
+
+.skill-content .content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .8rem;
+    margin-top: 1rem;
+}
+
+.skill-content .content span {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 5rem;
+    height: 5rem;
+    background-color: rgb(96, 178, 255);
+    box-shadow: 2px 10px 10px rgba(24, 15, 1, 0.3);
+    font-weight: 600;
+    transition: .3s ease;
+}
+
+.skill-content .content span:hover {
+    box-shadow: var(--box-shadow);
+}
+
+.skill-content .content span i {
+    font-size: 3rem;
+}
+
+.bar {
+    margin-top: 15px;
+    border: 1px solid #555;
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: #666;
+    background-image: repeating-linear-gradient(45deg, transparent 0, transparent 5px, #fff 5px, #fff 10px);
+}
+
+.level {
+    height: 20px;
+    color: whitesmoke;
+    text-align: center;
+    line-height: 20px;
+    width: 0;
+    transition: width 1s ease-in-out;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    border: 0.5px solid black;
+    border-radius: 1px;
+    background-color: #666;
+}
+
+.port-box .img-box {
+    display: flex;
+    width: 100%;
+    height: 18rem;
+    box-shadow: 2px 10px 10px rgba(24, 15, 1, 0.3);
+    overflow: hidden;
+    border: var(--border);
+    border-radius: .5rem;
+}
+
+.port-box .img-box img {
+    width: 100%;
+    object-fit: cover;
+    transition: .5s ease;
+}
+
+.port-box .img-box:hover img{
+    transform: scale(1.1);
+}
+
+.port-box .info-box {
+    margin: 1rem 0 1.5rem;
+}
+
+.port-box .info-box .info-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.port-box .info-box .info-title h3 {
+    font-size: 1.3rem;
+}
+
+.port-box .info-box .info-title a {
+    display: flex;
+    align-items: center;
+    color: var(--main-color);
+}
+
+.port-box .info-box .info-title a i {
+    margin-left: .3rem;
+}
+
+.port-box .info-box p:nth-last-of-type(1) {
+    font-weight: 600;
+}
+
+.port-box .btn-box {
+    display: flex;
+    justify-content: center;
+}
+
+.port-box.btn-box .btn {
+    margin: 0 1.15rem;
+}
+
+.contact-box {
+    text-align: center;
+}
+
+.contact-box .field {
+    width: 100%;
+    background: rgb(98, 255, 98);
+    padding: .8rem;
+    font-size: 1rem;
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+    box-shadow: 2px 10px 10px rgba(1, 24, 5, 0.3);
+    transition: .4s ease;
+}
+
+.contact-box .field:hover {
+    box-shadow: var(--box-shadow);
+}
+
+.contact-box .field::placeholder {
+    color: var(--text-color);
+}
+
+.contact-box textarea {
+    resize: none;
+    height: 15rem;
+}
+
+.contact-box .btn {
+    cursor: pointer;
+}
+
+.back-prof {
+    position: absolute;
+    bottom: 1.2rem;
+    right: 2rem;
+    width: 2rem;
+    height: 2rem;
+    background: pink;
+    font-size: 1.1rem;
+    display: inline-flex;
+    box-shadow: 1px 5px 5px rgba(24, 1, 1, 0.3);
+    transition: .4s ease;
+    justify-content: center;
+    align-items: center;
+}
+
+.back-prof:hover {
+    box-shadow: var(--box-shadow);
+}
+
+.back-prof p {
+    position: absolute;
+    transition: .4s ease;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%) scale(.5);
+    font-size: 1rem;
+    opacity: 0;
+}
+
+.back-prof:hover p {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+    top: -1.8rem;
+}
+
+/* Add these styles to your existing CSS or create a new section for modal styles */
+
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+    transition: .5s ease;
+}
+
+.modal {
+    position: relative;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    max-width: 95%;
+    max-height: 95%;
+    overflow: auto;
+}
+
+.modal:hover {
+    transform: scale(1.3);
+    transition: .5s ease;
+
+}
+
+
+.modal-img {
+    display: block;
+    margin: auto; /* Center the image horizontally */
+    max-width: 95%;
+    max-height: 95%;
+}
+
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    width: 1.5rem; /* Adjust the width */
+    height: 1.5rem; /* Adjust the height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: pink;
+    border-radius: 25%;
+    font-size: 2rem;
+    box-shadow: 1px 5px 5px rgba(24, 1, 1, 0.3);
+    transition: .4s ease;
+}
+
+.close-btn:hover {
+    box-shadow: var(--box-shadow);
+}
+
+@media (max-width: 767px) {
+    .wrapper {
+        position: relative;
+        width: 30rem;
+        height: 20rem;
+        padding: 1rem;
+        animation: show-animate 2.5s ease forwards;
+        perspective: 113rem;
+    }
+    
+    @keyframes show-animate {
+        0%,
+        35% {
+            opacity: 0;
+            transform: rotate(-25deg);
+        }
+        100% {
+            opacity: 1;
+            transform: rotate(0deg);
+        }
+    }
+    
+    .cover {
+        position: absolute;
+        width: 50%;
+        height: 100%;
+        background: var(--cover-color);
+        box-shadow: var(--box-shadow);
+        border-top-left-radius: .6rem;
+        border-bottom-left-radius: .6rem;
+        transform-origin: right;
+        top: 0;
+        left: 0;
+        box-shadow: 10px 75px 20px rgba(7, 2, 29, 0.3);
+    }
+    
+    .cover.cover-left {
+        z-index: -1;
+    }
+    
+    .cover.cover-right {
+        z-index: 100;
+        transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1);
+    }
+    
+    .cover.cover-right.turn {
+        transform: rotateY(180deg);
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    body::before {
+        background: rgba(0, 0, 0, 0.7); /* Adjust the overlay background for smaller screens */
+    }
+
+    .logo-container {
+        top: 15px; /* Adjust the logo position on smaller screens */
+        left: 2%; /* Adjust the logo left position */
+    }
+
+    .wrapper {
+        width: 90%; /* Adjust the width of the wrapper for better responsiveness */
+        height: auto; /* Let the height adjust automatically */
+        padding: 1rem; /* Add some padding for better spacing */
+    }
+
+    .cover {
+        width: 100%; /* Make the cover fill the entire width on smaller screens */
+        box-shadow: 0 0 0; /* Remove box-shadow for better visibility */
+        border-radius: 0; /* Remove border-radius for better visibility */
+    }
+
+    .book {
+        flex-direction: column; /* Adjust book layout for smaller screens */
+    }
+
+    .book .book-page {
+        width: 100%; /* Make book pages fill the entire width on smaller screens */
+    }
+
+    .profile-page img {
+        max-width: 100%; /* Make the profile image fill the container on smaller screens */
+    }
+
+    .contact-box .field {
+        font-size: 0.9rem; /* Adjust font size for better readability on smaller screens */
+    }
+
+    /* Add more adjustments for other elements as needed */
+}
