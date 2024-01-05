@@ -140,9 +140,20 @@ function closeModal() {
     document.getElementById('modalOverlay').style.display = 'none';
 }
 
-// Modify the setImgAndInfo function to set the preview link's onclick attribute
+// Modify the setImgAndInfo function to use image compression
 function setImgAndInfo() {
-    slide_img.setAttribute('src', 'img/' + img[i]);
+    // Create a new instance of the image compressor
+    var imageCompressor = new ImageCompressor();
+
+    // Load the original image
+    var originalImage = new Image();
+    originalImage.src = 'img/' + img[i];
+
+    // Compress the image and set it as the source of the slide_img element
+    imageCompressor.compress(originalImage, { quality: 0.6 }).then(function (result) {
+        slide_img.src = result;
+    });
+
     infoTitle.textContent = projectInfo[i].name;
     infoDescription.textContent = projectInfo[i].description;
 
